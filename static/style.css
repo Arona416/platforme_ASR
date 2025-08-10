@@ -1,0 +1,59 @@
+/* static/style.css */
+body { font-family: Arial,
+     Helvetica, sans-serif;
+      background:#f7f9fb;
+       color:#222; 
+    }
+.container {
+     max-width:900px; 
+     margin:30px auto;
+     background:white;
+     padding:20px; border-radius:8px;
+     box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+h1{
+    margin-top:0;
+}
+form label{
+    display:block;
+    margin-top:12px;
+    font-weight:600;
+}
+input[
+    type="text"
+    ], 
+    input[
+    type="email"
+        ],
+    textarea {
+    width:100%;
+    padding:8px;
+    margin-top:6px;
+    border:1px solid #ddd; 
+    border-radius:4px;}
+button{
+    margin-top:14px;
+    padding:10px 14px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;}
+button:hover{
+    opacity:0.95;
+    }
+table{width:100%;
+    border-collapse:collapse;
+    margin-top:14px;}
+table th, table td{
+    border:1px solid #eee;
+    padding:8px;text-align:left;
+    font-size:14px;}
+.actions{
+    margin-bottom:10px;
+}
+.consent{
+    margin-top:10px;
+}
+#result, #msg{
+    margin-top:12px;font-weight:700;
+}

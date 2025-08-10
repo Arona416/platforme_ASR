@@ -1,0 +1,68 @@
+<!-- templates/admin.html -->
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Admin — Inscriptions</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="container">
+    <h1>Tableau des inscriptions</h1>
+
+    <div class="actions">
+      <!-- Le token est passé dans l'URL, ici on le met en JS depuis le template -->
+      <button id="downloadBtn">Exporter en Excel (télécharger)</button>
+      <button id="sendTelegramBtn">Envoyer Excel sur Telegram</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Nom</th><th>Ville (RU)</th><th>Ville (SN)</th><th>Téléphone</th><th>Contact urgence</th><th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for s in submissions %}
+        <tr>
+          <td>{{ s.id }}</td>
+          <td>{{ s.full_name }}</td>
+          <td>{{ s.city_russia }}</td>
+          <td>{{ s.city_senegal }}</td>
+          <td>{{ s.phone }}</td>
+          <td>{{ s.emergency_contact }}</td>
+          <td>{{ s.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <p id="msg"></p>
+  </div>
+
+<script>
+const token = "{{ token }}";  // injecté par Flask, attention à bien garder secret
+
+document.getElementById("downloadBtn").addEventListener("click", () => {
+  window.location = `/export?token=${encodeURIComponent(token)}`;
+});
+
+document.getElementById("sendTelegramBtn").addEventListener("click", async () => {
+  const msgEl = document.getElementById("msg");
+  msgEl.innerText = "Envoi en cours...";
+  try {
+    const r = await fetch(`/send_export_telegram?token=${encodeURIComponent(token)}`);
+    const j = await r.json();
+    if(r.ok) {
+      msgEl.innerText = j.message || "Fichier envoyé sur Telegram.";
+    } else {
+      msgEl.innerText = "Erreur : " + (j.message || JSON.stringify(j));
+    }
+  } catch (e) {
+    msgEl.innerText = "Erreur réseau: " + e;
+  }
+});
+</script>
+</body>
+</html>
