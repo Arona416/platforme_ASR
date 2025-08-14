@@ -1,7 +1,7 @@
 📌 Plateforme d’Inscription - Association des Sénégalais de Russie
 🎯 Objectif
 
-Ce projet est une plateforme web simple permettant aux Sénégalais résidant en Russie ou dans leur pays d’origine de s’inscrire afin de rejoindre les groupes WhatsApp et Telegram de l’association.
+Ce projet est une plateforme web simple permettant aux Sénégalais résidant en Russie de s’inscrire afin de rejoindre les groupes WhatsApp et Telegram de l’association.
 Les informations collectées servent à :
 
 Ajout rapide dans les groupes après vérification.
